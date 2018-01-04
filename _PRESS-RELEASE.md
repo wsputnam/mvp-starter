@@ -18,27 +18,35 @@ Once the project moves into development, the press release can be used as a touc
  
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
+  > Get Inspired: Start your day with motivational quotes
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  > Anybody who wishes to become inspired by daily quotes
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > Get Inspired aims to push people to achieve more in life by providing them with a list of quotes to wake up to every morning
 
 ## Problem ##
   > Describe the problem your product solves.
+  > This app will serve as a catalyst to not only make people more erudite but also inspire those same people to action
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
+  > It will get people motivated
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
+  > "This product will revolutionize how people start their days"
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
+  > Just go to the website and press a button for a daily quote (or see a whole list of quotes to sift through)
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  > "Get Inspired allowed me to look really smart at parties"
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
