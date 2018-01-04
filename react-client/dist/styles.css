@@ -14,3 +14,10 @@ h1 {
 	color: #4949c4;
 	font-size: 75px;
 }
+button {
+    border-style: dotted;
+    width: 10%;
+    height: 15%;
+    font-size: 15px;
+    font-family: 'Oswald', sans-serif;
+}

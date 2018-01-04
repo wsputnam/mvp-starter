@@ -6,19 +6,26 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
-// UNCOMMENT FOR REACT
-// app.use(express.static(__dirname + '/../react-client/dist'));
+var items = [{"qotd_date":"2018-01-05T00:00:00.000+00:00","quote":{"id":27654,"dialogue":false,"private":false,"tags":["good","wisdom"],"url":"https://favqs.com/quotes/francois-de-la-rochefoucauld/27654-few-people-ha-","favorites_count":1,"upvotes_count":1,"downvotes_count":0,"author":"Francois de La Rochefoucauld","author_permalink":"francois-de-la-rochefoucauld","body":"Few people have the wisdom to prefer the criticism that would do them good, to the praise that deceives them."}}];
+app.use(bodyParser.json());
+app.use(express.static(__dirname + '/../react-client/dist'));
 
 // UNCOMMENT FOR ANGULAR
 // app.use(express.static(__dirname + '/../angular-client'));
 // app.use(express.static(__dirname + '/../node_modules'));
-
+app.post('/items', function(req, res) {
+  if (err) {
+  	res.sendStatus(404);
+  } else {
+  	res.json(items);
+  }
+});
 app.get('/items', function (req, res) {
   items.selectAll(function(err, data) {
     if(err) {
       res.sendStatus(500);
     } else {
-      res.json(data);
+      res.json(items);
     }
   });
 });
