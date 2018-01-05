@@ -55,6 +55,17 @@ app.get('/load', function (req, res) {
   });
 });
 
+app.get('/search', function(req, res) {
+	database.selectAll(function(err, data) {
+		if (err) {
+			res.sendStatus(500);
+		} else {
+			console.log('data from search', data);
+			res.json(data);
+		}
+	});
+});
+
 app.listen(3000, function() {
   console.log('listening on port 3000!');
 });

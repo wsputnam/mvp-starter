@@ -31,11 +31,19 @@ class App extends React.Component {
         items: [{author: 'Ace White', body: this.added.value}, ...this.state.items]
       });
   }
+  searchQuotes(query) {
+    axios.get('/search')
+      .then(res => {
+        this.setState({items: res.data});
+      })
+      .catch(error => {
+        console.log('search error', error);
+      })
+  }
   loadAll() {
     axios.get('/load')
      .then(res => {
-      console.log('res', res.data)
-       this.setState({items: res.data});
+       this.setState({items: res.data.slice(19)});
      })
      .catch(error => {
         console.log('did mount error', error);
@@ -55,7 +63,7 @@ class App extends React.Component {
     axios.get('/load')
      .then(res => {
       console.log('res', res.data)
-       this.setState({items: res.data.slice(res.data.length - 25)});
+       this.setState({items: res.data.slice(res.data.length - 10)});
      })
      .catch(error => {
         console.log('did mount error', error);
@@ -65,6 +73,7 @@ class App extends React.Component {
     return (<div>
       <h1>{this.state.selected.body}</h1>
       <h2>{this.state.selected.author}</h2>
+      <button>Search</button>
       <input ref={(input) => {this.added = input}} type="text" /><button onClick={(e) => this.addQuote(e)}>Add a quote</button>
       <button onClick={(e)=> {this.loadAll()}}>Load All Quotes</button>
       <List dailyQuote={this.dailyQuote} items={this.state.items}/>

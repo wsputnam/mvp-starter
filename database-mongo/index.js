@@ -43,5 +43,6 @@ var selectAll = function(callback) {
   });
 };
 
+
 module.exports.saveQuotes = saveQuotes;
 module.exports.selectAll = selectAll;
