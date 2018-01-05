@@ -4,7 +4,7 @@ import $ from 'jquery';
 import List from './components/List.jsx';
 import axios from 'axios';
 
-var items = [{"qotd_date":"2018-01-05T00:00:00.000+00:00","quote":{"id":38713,"dialogue":false,"private":false,"tags":["love"],"url":"https://favqs.com/quotes/friedrich-nietzsche/38713-there-is-alwa-","favorites_count":1,"upvotes_count":1,"downvotes_count":0,"author":"Friedrich Nietzsche","author_permalink":"friedrich-nietzsche","body":"There is always some madness in love. But there is also always some reason in madness."}}, {"qotd_date":"2018-01-05T00:00:00.000+00:00","quote":{"id":27654,"dialogue":false,"private":false,"tags":["good","wisdom"],"url":"https://favqs.com/quotes/francois-de-la-rochefoucauld/27654-few-people-ha-","favorites_count":1,"upvotes_count":1,"downvotes_count":0,"author":"Francois de La Rochefoucauld","author_permalink":"francois-de-la-rochefoucauld","body":"Few people have the wisdom to prefer the criticism that would do them good, to the praise that deceives them."}}]
+var items = [{"id":38713,"dialogue":false,"private":false,"tags":["love"],"url":"https://favqs.com/quotes/friedrich-nietzsche/38713-there-is-alwa-","favorites_count":1,"upvotes_count":1,"downvotes_count":0,"author":"Friedrich Nietzsche","author_permalink":"friedrich-nietzsche","body":"There is always some madness in love. But there is also always some reason in madness."}, {"id":27654,"dialogue":false,"private":false,"tags":["good","wisdom"],"url":"https://favqs.com/quotes/francois-de-la-rochefoucauld/27654-few-people-ha-","favorites_count":1,"upvotes_count":1,"downvotes_count":0,"author":"Francois de La Rochefoucauld","author_permalink":"francois-de-la-rochefoucauld","body":"Few people have the wisdom to prefer the criticism that would do them good, to the praise that deceives them."}]
 
 class App extends React.Component {
   constructor(props) {
@@ -35,7 +35,8 @@ class App extends React.Component {
   componentWillMount() {
     axios.get('/items')
     .then(res => {
-      this.setState({items: res.data})
+      // console.log('Here is data', res.data);
+      this.setState({items: JSON.parse(res.data).quotes});
     })
     .catch(error => {
       console.log('error', error);
@@ -56,8 +57,8 @@ class App extends React.Component {
 
   render () {
     return (<div>
-      <h1>{this.state.selected.quote.body}</h1>
-      <h2>{this.state.selected.quote.author}</h2>
+      <h1>{this.state.selected.body}</h1>
+      <h2>{this.state.selected.author}</h2>
       <input ref={(input) => {this.added = input}} type="text" /><button onClick={(e) => this.addQuote(e)}>Add a quote</button>
       <List dailyQuote={this.dailyQuote} items={this.state.items}/>
     </div>)
