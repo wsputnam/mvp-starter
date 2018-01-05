@@ -36,13 +36,16 @@ class App extends React.Component {
     axios.get('/items')
     .then(res => {
       this.setState({items: res.data})
+    })
+    .catch(error => {
+      console.log('error', error);
     });
     // $.ajax({
     //   method: 'GET',
     //   url: '/items', 
     //   success: (data) => {
     //     this.setState({
-    //       items: res.data
+    //       items: data
     //     })
     //   },
     //   error: (err) => {
