@@ -44,7 +44,8 @@ class App extends React.Component {
   componentDidMount() {
     axios.get('/load')
      .then(res => {
-       this.setState({items: res.data});
+      console.log('res', res.data)
+       this.setState({items: res.data.slice(19)});
      })
      .catch(error => {
         console.log('did mount error', error);
