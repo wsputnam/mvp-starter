@@ -40,8 +40,8 @@ app.get('/items', function (req, res) {
         // console.log('here is res', response);
         // console.log('here is body', body);
         // let data = JSON.parse(response);
-        // database.saveQuotes(body, res);
-        res.json(body);
+        database.saveQuotes(body, res);
+        // res.json(body);
       });  
 });
 
