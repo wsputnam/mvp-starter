@@ -23,7 +23,8 @@ var saveQuotes = function(data, res) {
   var quotes = JSON.parse(data).quotes;
   quotes.forEach(function(quote) {
     // console.log('here is data from db', quote);
-    new Quote({author: quote.author, body: quote.body, starred: false}).save(function(err) {
+    new Quote({author: quote.author, body: quote.body, starred: false})
+    .save(function(err) {
       if (err) {
         res.statusCode(404);
         res.end(err);
@@ -31,7 +32,6 @@ var saveQuotes = function(data, res) {
     });
     // console.log('quote saved to db', Quote);
   });
-  // res.end();
 };
 var selectAll = function(callback) {
   console.log('here is quote', Quote);

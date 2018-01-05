@@ -25,14 +25,14 @@ class App extends React.Component {
     })
   }
   starQuote() {
-
+    
   }
   addQuote(e) {
     event.preventDefault();
     var newItem = {};
-      this.setState({
-        items: [{author: 'Ace White', body: this.added.value, starred: false}, ...this.state.items]
-      });
+    this.setState({
+      items: [{author: 'Ace White', body: this.added.value, starred: false}, ...this.state.items]
+    });
   }
   searchQuotes(e) {
     event.preventDefault();
@@ -42,7 +42,7 @@ class App extends React.Component {
         var arr = [];
         for (var i = 20; i < res.data.length; i++) {
           console.log('response', res.data[0].author)
-          if (res.data[i].author.toLowerCase() === this.added.value.toLowerCase()) {
+          if (res.data[i].author.toLowerCase() === this.added.value.toLowerCase() && arr.includes(res.data[i]) === false) {
             arr.push(res.data[i]);
           }
         }
