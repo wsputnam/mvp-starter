@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 // UNCOMMENT THE DATABASE YOU'D LIKE TO USE
 // var items = require('../database-mysql');
-// var items = require('../database-mongo');
+var database = require('../database-mongo');
 
 var app = express();
 var axios = require('axios');
@@ -10,7 +10,7 @@ var request = require('request');
 var config = require('./config.js');
 
 var options = {
-	'url': ` https://favqs.com/api/quotes/?filter=funny&type=tag`,
+	'url': ` https://favqs.com/api/quotes/`,
 	 'headers': {
 	 	'Content-Type': 'application/json',
 	 	'Authorization': `Token token=${config.TOKEN}`
@@ -40,11 +40,19 @@ app.get('/items', function (req, res) {
         // console.log('here is res', response);
         // console.log('here is body', body);
         // let data = JSON.parse(response);
+        // database.saveQuotes(body, res);
         res.json(body);
-      });
-      // res.json(items);
-   
-  
+      });  
+});
+
+app.get('/load', function (req, res) {
+  database.selectAll(function(err, data) {
+    if(err) {
+      res.sendStatus(500);
+    } else {
+      res.json(data);
+    }
+  });
 });
 
 app.listen(3000, function() {

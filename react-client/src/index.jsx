@@ -40,20 +40,16 @@ class App extends React.Component {
     .catch(error => {
       console.log('error', error);
     });
-    // $.ajax({
-    //   method: 'GET',
-    //   url: '/items', 
-    //   success: (data) => {
-    //     this.setState({
-    //       items: data
-    //     })
-    //   },
-    //   error: (err) => {
-    //     console.log('err', err);
-    //   }
-    // });
   }
-
+  componentDidMount() {
+    axios.get('/load')
+     .then(res => {
+       this.setState({items: res.data});
+     })
+     .catch(error => {
+        console.log('did mount error', error);
+     });
+  }
   render () {
     return (<div>
       <h1>{this.state.selected.body}</h1>
