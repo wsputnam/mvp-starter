@@ -83,7 +83,7 @@ class App extends React.Component {
     axios.get('/load')
      .then(res => {
       console.log('res', res.data)
-       this.setState({items: res.data.slice(res.data.length - 10)});
+       this.setState({items: res.data.slice(res.data.length - 5)});
      })
      .catch(error => {
         console.log('did mount error', error);
