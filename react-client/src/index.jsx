@@ -50,7 +50,7 @@ class App extends React.Component {
         var arr = [];
         for (var i = 20; i < res.data.length; i++) {
           // console.log('response', res.data[0].author)
-          if (res.data[i].author === this.added.value && arr.includes(res.data[i]) === false) {
+          if (res.data[i].author !== undefined && res.data[i].author.toLowerCase() === this.added.value.toLowerCase() && arr.includes(res.data[i]) === false) {
             arr.push(res.data[i]);
           }
         }
