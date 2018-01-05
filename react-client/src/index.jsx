@@ -66,6 +66,7 @@ class App extends React.Component {
       <h1>{this.state.selected.body}</h1>
       <h2>{this.state.selected.author}</h2>
       <input ref={(input) => {this.added = input}} type="text" /><button onClick={(e) => this.addQuote(e)}>Add a quote</button>
+      <button onClick={(e)=> {this.loadAll()}}>Load All Quotes</button>
       <List dailyQuote={this.dailyQuote} items={this.state.items}/>
     </div>)
   }
