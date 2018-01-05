@@ -10,7 +10,8 @@ class App extends React.Component {
     super(props);
     this.state = { 
       items: items,
-      selected: items[0]
+      selected: items[0],
+      added: ''
       
     }
     this.dailyQuote = this.dailyQuote.bind(this);
@@ -19,18 +20,16 @@ class App extends React.Component {
   dailyQuote(clicked) {
     console.log('this was clicked', clicked);
     this.setState({
-      selected: items[1]
+      selected: clicked
     })
   }
-  addQuote(event) {
+  addQuote(e) {
     event.preventDefault();
     var newItem = {};
     newItem.quote = {};
-    if (event.key === 'Enter') {
       this.setState({
-        items: [{quote: {author: 'yo yo', body: event.target.value}}, ...this.state.items]
+        items: [{quote: {author: 'author unknown', body: this.added.value}}, ...this.state.items]
       });
-    }
   }
   componentDidMount() {
     $.ajax({
@@ -49,8 +48,10 @@ class App extends React.Component {
 
   render () {
     return (<div>
-      <h1>{this.state.selected.quote.body} {this.state.selected.quote.author}</h1>
-      <List addQuote={this.addQuote} dailyQuote={this.dailyQuote} items={this.state.items}/>
+      <h1>{this.state.selected.quote.body}</h1>
+      <h2>{this.state.selected.quote.author}</h2>
+      <input ref={(input) => {this.added = input}} type="text" /><button onClick={(e) => this.addQuote(e)}>Add a quote</button>
+      <List dailyQuote={this.dailyQuote} items={this.state.items}/>
     </div>)
   }
 }
