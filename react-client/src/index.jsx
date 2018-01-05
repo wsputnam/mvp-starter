@@ -31,10 +31,19 @@ class App extends React.Component {
         items: [{author: 'Ace White', body: this.added.value}, ...this.state.items]
       });
   }
-  searchQuotes(query) {
+  searchQuotes(e) {
+    event.preventDefault();
+    console.log('author should be here', this.added.value)
     axios.get('/search')
       .then(res => {
-        this.setState({items: res.data});
+        var arr = [];
+        for (var i = 20; i < res.data.length; i++) {
+          console.log('response', res.data[0].author)
+          if (res.data[i].author.toLowerCase() === this.added.value.toLowerCase()) {
+            arr.push(res.data[i]);
+          }
+        }
+        this.setState({items: arr});
       })
       .catch(error => {
         console.log('search error', error);
@@ -73,7 +82,7 @@ class App extends React.Component {
     return (<div>
       <h1>{this.state.selected.body}</h1>
       <h2>{this.state.selected.author}</h2>
-      <button>Search</button>
+      <button onClick={(e)=>{this.searchQuotes(e)}}>Search</button>
       <input ref={(input) => {this.added = input}} type="text" /><button onClick={(e) => this.addQuote(e)}>Add a quote</button>
       <button onClick={(e)=> {this.loadAll()}}>Load All Quotes</button>
       <List dailyQuote={this.dailyQuote} items={this.state.items}/>
