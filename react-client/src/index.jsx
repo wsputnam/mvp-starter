@@ -27,9 +27,8 @@ class App extends React.Component {
   addQuote(e) {
     event.preventDefault();
     var newItem = {};
-    newItem.quote = {};
       this.setState({
-        items: [{quote: {author: 'author unknown', body: this.added.value}}, ...this.state.items]
+        items: [{author: 'Ace White', body: this.added.value}, ...this.state.items]
       });
   }
   componentWillMount() {
