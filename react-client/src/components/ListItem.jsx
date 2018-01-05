@@ -2,8 +2,9 @@ import React from 'react';
 
 const ListItem = (props) => (
   <div>
-    { props.item.quote.body }
-    {props.item.quote.author}
+    <h3>{ props.item.quote.body }</h3>
+    <h4 id="author">{props.item.quote.author}</h4>
+   
     <button onClick={(e)=>{props.dailyQuote(props.item)}}>Select</button>
   </div>
 )
