@@ -24,7 +24,7 @@ class App extends React.Component {
     })
   }
   starQuote() {
-    
+    // hello
   }
   addQuote(e) {
     event.preventDefault();
