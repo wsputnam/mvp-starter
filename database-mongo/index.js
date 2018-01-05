@@ -13,7 +13,8 @@ db.once('open', function() {
 
 var quoteSchema = mongoose.Schema({
   author: String,
-  body: String
+  body: String,
+  starred: Boolean
 });
 
 var Quote = mongoose.model('Quote', quoteSchema);
@@ -22,7 +23,7 @@ var saveQuotes = function(data, res) {
   var quotes = JSON.parse(data).quotes;
   quotes.forEach(function(quote) {
     // console.log('here is data from db', quote);
-    new Quote({author: quote.author, body: quote.body}).save(function(err) {
+    new Quote({author: quote.author, body: quote.body, starred: false}).save(function(err) {
       if (err) {
         res.statusCode(404);
         res.end(err);

@@ -27,3 +27,6 @@ button {
 #favorited {
 	color: #FF0000;
 }
+#rendered {
+	background-image: url('./background_image.jpg');
+}
