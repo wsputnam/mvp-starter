@@ -19,7 +19,6 @@ class App extends React.Component {
     this.addQuote = this.addQuote.bind(this);
   }
   dailyQuote(clicked) {
-    console.log('this was clicked', clicked);
     this.setState({
       selected: clicked
     })
@@ -29,10 +28,19 @@ class App extends React.Component {
   }
   addQuote(e) {
     event.preventDefault();
-    var newItem = {};
-    this.setState({
-      items: [{author: 'Ace White', body: this.added.value, starred: false}, ...this.state.items]
-    });
+    axios.post('/items', [{author: 'Ace White', body: this.added.value}])
+    .then(res => {
+      this.setState({
+        items: [{author: 'Ace White', body: this.added.value}, ...this.state.items]
+      });
+    })
+    .catch(error => {
+      console.log('adding error', error);
+    })
+    // })
+    // this.setState({
+    //   items: [{author: 'Ace White', body: this.added.value, starred: false}, ...this.state.items]
+    // });
   }
   searchQuotes(e) {
     event.preventDefault();
@@ -41,8 +49,8 @@ class App extends React.Component {
       .then(res => {
         var arr = [];
         for (var i = 20; i < res.data.length; i++) {
-          console.log('response', res.data[0].author)
-          if (res.data[i].author.toLowerCase() === this.added.value.toLowerCase() && arr.includes(res.data[i]) === false) {
+          // console.log('response', res.data[0].author)
+          if (res.data[i].author === this.added.value && arr.includes(res.data[i]) === false) {
             arr.push(res.data[i]);
           }
         }

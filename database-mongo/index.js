@@ -19,6 +19,21 @@ var quoteSchema = mongoose.Schema({
 
 var Quote = mongoose.model('Quote', quoteSchema);
 
+var saveAQuote = function(data, res) {
+  var quote = JSON.parse(data.body).quotes;
+  console.log('here is aces quote', quote);
+  quote.forEach(function(quote) {
+    // console.log('here is data from db', quote);
+    new Quote({author: quote.author, body: quote.body, starred: false})
+    .save(function(err) {
+      if (err) {
+        res.statusCode(404);
+        res.end(err);
+      }
+    });
+    // console.log('quote saved to db', Quote);
+  });
+}
 var saveQuotes = function(data, res) {
   var quotes = JSON.parse(data).quotes;
   quotes.forEach(function(quote) {
@@ -34,7 +49,6 @@ var saveQuotes = function(data, res) {
   });
 };
 var selectAll = function(callback) {
-  console.log('here is quote', Quote);
   Quote.find({}, function(err, items) {
     if(err) {
       callback(err, null);
@@ -44,6 +58,6 @@ var selectAll = function(callback) {
   });
 };
 
-
+module.exports.saveAQuote = saveAQuote;
 module.exports.saveQuotes = saveQuotes;
 module.exports.selectAll = selectAll;
