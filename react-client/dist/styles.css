@@ -23,4 +23,7 @@ button {
 }
 #author {
 	color: #4949c4;
+},
+#favorited {
+	color: #FF0000;
 }
