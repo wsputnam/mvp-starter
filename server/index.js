@@ -41,7 +41,7 @@ app.get('/items', function (req, res) {
         // console.log('here is body', body);
         // let data = JSON.parse(response);
         database.saveQuotes(body, res);
-        // res.json(body);
+        res.json(body);
       });  
 });
 

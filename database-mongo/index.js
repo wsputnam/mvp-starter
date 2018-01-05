@@ -30,7 +30,7 @@ var saveQuotes = function(data, res) {
     });
     // console.log('quote saved to db', Quote);
   });
-  res.end();
+  // res.end();
 };
 var selectAll = function(callback) {
   console.log('here is quote', Quote);

@@ -31,6 +31,16 @@ class App extends React.Component {
         items: [{author: 'Ace White', body: this.added.value}, ...this.state.items]
       });
   }
+  loadAll() {
+    axios.get('/load')
+     .then(res => {
+      console.log('res', res.data)
+       this.setState({items: res.data});
+     })
+     .catch(error => {
+        console.log('did mount error', error);
+     });
+  }
   componentWillMount() {
     axios.get('/items')
     .then(res => {
@@ -45,7 +55,7 @@ class App extends React.Component {
     axios.get('/load')
      .then(res => {
       console.log('res', res.data)
-       this.setState({items: res.data.slice(19)});
+       this.setState({items: res.data.slice(res.data.length - 25)});
      })
      .catch(error => {
         console.log('did mount error', error);
