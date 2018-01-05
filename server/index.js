@@ -10,10 +10,10 @@ var request = require('request');
 var config = require('./config.js');
 
 var options = {
-	'url': `https://favqs.com/${config.TOKEN}/quotes/filter=motivation`,
+	'url': ` https://favqs.com/api/quotes/?filter=funny&type=tag`,
 	 'headers': {
 	 	'Content-Type': 'application/json',
-	 	'Authorization': `Token token ${config.TOKEN}`
+	 	'Authorization': `Token token=${config.TOKEN}`
 	 }
 }
 
